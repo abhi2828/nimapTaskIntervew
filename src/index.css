@@ -1,13 +1,94 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+  box-sizing: border-box;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  list-style: none;
+  text-align: center;
+  font-family: 'josefin sans','Arial Narrow',Arial,sans-serif;
+}
+h2,p{
+  text-transform: capitalize;
+}
+.active{
+  color: red !important;
+  background: rgba(0, 0, 0, 0.15) !important;
+}
+.ul_list{
+  display: contents;
+}
+ul.ul_list li {
+  margin: auto 10px;
+}
+/*| Navigation |*/
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+nav ul {
+  list-style: none;
+  position: relative;
+  float: right;
+  margin-right: 100px;
+  display: inline-table;
+}
+
+nav ul li {
+  transition: all 0.2s ease-in-out;
+}
+
+nav ul li:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+nav ul li:hover > ul {
+  display: block;
+}
+
+nav ul li {
+  float: left;
+  transition: all 0.2s ease-in-out;
+}
+
+nav ul li a {
+  display: block;
+  padding: 30px 20px;
+  color: #222;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+nav ul ul {
+  display: none;
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  box-shadow: -3px 3px 10px -2px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+nav ul ul li {
+  float: none;
+  position: relative;
+}
+
+nav ul ul li a {
+  padding: 15px 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+nav ul ul ul {
+  position: absolute;
+  left: 100%;
+  top: 0;
 }

@@ -1,0 +1,19 @@
+.taskItem {
+    background-color: white;
+    margin: 10px auto;
+    padding: 15px 5px 10px 10px;
+}
+.form{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px auto;
+}
+input{
+    height: 40px;
+}
+form.form button{
+    width: 100px;
+}
+span.error_color {
+    color: red;
+}

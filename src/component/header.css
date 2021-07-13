@@ -1,0 +1,199 @@
+.mainbox {
+  margin: auto;
+  height: 91vh;
+  width: 100%;
+  position: relative;
+}
+
+.err {
+  color: #ffffff;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 11rem;
+}
+
+.msg {
+  text-align: center;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.6rem;
+  margin: auto;
+  width: 75%;
+}
+
+
+
+/*| Navigation |*/
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  list-style: none;
+  position: relative;
+  float: right;
+  margin-right: 100px;
+  display: inline-table;
+}
+
+nav ul li {
+  transition: all 0.2s ease-in-out;
+}
+
+nav ul li:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+nav ul li:hover>ul {
+  display: block;
+}
+
+nav ul li {
+  float: left;
+  transition: all 0.2s ease-in-out;
+}
+
+nav ul li a {
+  display: block;
+  padding: 30px 20px;
+  color: #222;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+nav ul ul {
+  display: none;
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  box-shadow: -3px 3px 10px -2px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+nav ul ul li {
+  float: none;
+  position: relative;
+}
+
+nav ul ul li a {
+  padding: 15px 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+nav ul ul ul {
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+
+/* home drop-down */
+
+
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+a:hover {
+  color: #222222;
+  text-decoration: none;
+}
+
+.panel-heading {
+  border: 1px solid;
+  width: 280px;
+  border-radius: 5px;
+}
+
+
+/* abhay */
+div#faqhead3 {
+  display: flex;
+}
+
+#main {
+  margin: 50px 0;
+}
+
+#main #faq .card {
+  margin-bottom: 30px;
+  border: 0;
+}
+
+span.btn.btn-header-link.d-flex.justify-content-between,
+span.btn.btn-header-link.collapsed.d-flex.justify-content-between {
+  border: 1px solid;
+  width: 200px !important;
+}
+
+a.btn.btn-header-link.d-flex.justify-content-between:focus,
+a.btn.btn-header-link.collapsed.d-flex.justify-content-between:focus {
+  outline: none;
+  box-shadow: none
+}
+
+#main #faq .card .collapsing {
+  background: #FFE472;
+  line-height: 30px;
+}
+
+/* #main #faq .card .collapse {
+  border: 0;
+} */
+
+#main #faq .card .collapse.show {
+  background: #FFE472;
+  line-height: 30px;
+  color: #222;
+}
+
+/* User CSS */
+
+
+body {
+  background-color: #5d8fc9;
+}
+
+#login-card {
+  width: 350px;
+  border-radius: 25px;
+  margin: 10% auto;
+}
+
+.form_input {
+  border-radius: 30px;
+  background-color: #ebf0fc;
+  border-color: #ebf0fc;
+  color: #616163;
+}
+
+#button {
+  border-radius: 30px;
+
+}
+
+#btn {
+  position: absolute;
+  bottom: -35px;
+  padding: 5px;
+  margin: 0px 70px;
+  align-items: center;
+  border-radius: 5px
+}
+
+.btn-circle.btn-sm {
+  width: 40px;
+  height: 40px;
+  padding: 2px 0px;
+  border-radius: 25px;
+  font-size: 14px;
+  text-align: center;
+  margin: 8px;
+}
