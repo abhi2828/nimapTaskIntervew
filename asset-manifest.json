@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/nimapTaskIntervew/static/css/main.3ad92b3b.chunk.css",
-    "main.js": "/nimapTaskIntervew/static/js/main.df31c97d.chunk.js",
-    "main.js.map": "/nimapTaskIntervew/static/js/main.df31c97d.chunk.js.map",
+    "main.js": "/nimapTaskIntervew/static/js/main.7f5a03ec.chunk.js",
+    "main.js.map": "/nimapTaskIntervew/static/js/main.7f5a03ec.chunk.js.map",
     "runtime-main.js": "/nimapTaskIntervew/static/js/runtime-main.dc82a30f.js",
     "runtime-main.js.map": "/nimapTaskIntervew/static/js/runtime-main.dc82a30f.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/nimapTaskIntervew/static/css/2.4c97ca4f.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.955f8d28.chunk.js",
     "static/css/main.3ad92b3b.chunk.css",
-    "static/js/main.df31c97d.chunk.js"
+    "static/js/main.7f5a03ec.chunk.js"
   ]
 }
