@@ -44,7 +44,7 @@ export default class Register extends Component {
             break;
 
             case 'password': 
-            errors.password =  password_result === false ? '*Please enter valid password.' : ''
+            errors.password =  password_result === false ? '*Please enter valid password ( at least 8 characters in length, one upper case,one lower case,one digit,one Special character).' : ''
             break;
 
             case 'conf_pass': 
