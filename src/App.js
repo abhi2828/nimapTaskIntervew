@@ -6,7 +6,6 @@ import Home from "./component/pages/Home";
 import Page_404 from "./component/pages/Page_404";
 import Task from "./component/pages/Task";
 import Register from './component/pages/Register';
-// import Register2 from './component/pages/Register2';
 const App = () => {
   return (
     <>
@@ -17,9 +16,7 @@ const App = () => {
         <Route exact path='/nimapTaskIntervew' component={Home} />
         <Route exact path='/Task' component={Task} />        
         <Route exact path='/Register' component={Register} />
-        {/* <Route exact path='/Register2' component={Register2} /> */}
         <Route exact path='/User' component={User} />
-        {/* <Route exact path='/User' component={User} /> */}
         <Route component={Page_404} />
       </Switch>  
       </div>    
