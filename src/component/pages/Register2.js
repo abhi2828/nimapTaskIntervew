@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom';
 // import validator from 'validator'
 
-export default class User extends Component {
+export default class Register extends Component {
 
     constructor(props) {
         super(props);
@@ -20,9 +21,6 @@ export default class User extends Component {
         }
     }
 
-    fieldValidion=()=>{
-        console.log('fieldValidion');
-    }
 
     ChangeHandler = (e) => {
         let name = e.target.name
@@ -62,25 +60,27 @@ export default class User extends Component {
     onSubmitHandler = (e) => {
         // this.fieldValidion()
         e.preventDefault()
+        
         let{ login,users,errors} = this.state;  
+
         if(login.email && login.password && login.conf_pass !== '' ){
             console.log('submited successfully');
             delete login['']
             console.log(login,'login');
            
             var check = false
-                users.forEach((ele)=>{
-                    if(ele.email === login.email){
-                        check = true
-                    }               
-                })
-                if(check ===  false){
-                    users.push(login)
-                    alert(`Users Add`,login);
-                }
-                else{
-                    alert(`Already Exist `,check);
-                 }
+            users.forEach((ele)=>{
+                if(ele.email === login.email){
+                    check = true
+                }               
+            })
+            if(check ===  false){
+                users.push(login)
+                alert(`Users Add`,login);
+            }
+            else{
+                alert(`Already Exist `,check);
+             }           
 
                 console.log(users,'users');
 
@@ -92,11 +92,34 @@ export default class User extends Component {
                         conf_pass: ''
                     }
                 })
+                
 
         }
         else{
-            console.log('Please Enter Valid login credential');
+            if(login.email === ''){
+
+                errors.email = 'email canot be blank'
+                this.setState({
+                    errors
+                })
+            }
+            if(login.password === ''){
+
+                errors.password = 'password canot be blank'
+                this.setState({
+                    errors
+                })
+            }
+            if(login.conf_pass === ''){
+
+                errors.conf_pass = 'conf_pass canot be blank'
+                this.setState({
+                    errors
+                })
+            }
         }
+        localStorage.setItem('users', JSON.stringify(users));
+        
     }
 
     render() {
@@ -106,7 +129,7 @@ export default class User extends Component {
             <>
                 <div id="login-card" className="card">
                     <div className="card-body">
-                        <h2 className="text-center">Signup form</h2>
+                        <h2 className="text-center">Signup2</h2>
                         <span className="text-center">abc@gmail.com</span>
                         <br />
                         <form onSubmit={this.onSubmitHandler} >
@@ -123,7 +146,9 @@ export default class User extends Component {
                                 <input type="text" value={this.state.login.conf_pass} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="password2" placeholder="Re_Enter password" name="conf_pass" />
                             </div>
                             <span className="error_color">{conf_pass} </span>
-                            <button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit</button>
+                            <button type="submit" id="button" className="btn btn-primary deep-purple btn-block "> Submit</button>
+                            {/* <NavLink exact to='/User' ><button type="submit" id="button" className="btn btn-primary deep-purple btn-block "> Submit</button></NavLink> */}
+                            
                             <br />
                             <br />
                             <div id="btn" className="text-center">

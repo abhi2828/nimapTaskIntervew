@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom';
 
 export default class User extends Component {
     constructor(props){
         super(props);
         this.state={
+            link:true,
             users:[],
             login:{
                 email:'',
@@ -66,7 +68,7 @@ export default class User extends Component {
             <>
             <div id="login-card" className="card">
                 <div className="card-body">
-                    <h2 className="text-center">Signup form</h2>
+                    <h2 className="text-center">Login</h2>  
                     <br />
                     <form onSubmit={this.onSubmitHandler} noValidate>
                         <div className="form-group">
@@ -76,6 +78,14 @@ export default class User extends Component {
                             <input type="password" value={this.state.login.Password} onChange={this.onChangeHandler} className="form-control form_input" id="password" placeholder="Enter password" name="password" />
                         </div>
                         <button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit</button>
+                        <br/>
+                        {/* <div className="form__row">
+                            <NavLink to='' className="form__retrieve-pass">Forgot Password?</NavLink>
+                        </div> */}
+                        <div>
+                            <span className="ask">Don't have account?</span>
+                            <NavLink to='/Register'><button className="btn signup">sign up</button></NavLink>
+                        </div>
                         <br />
                         <br />
                         <div id="btn" className="text-center">
@@ -93,3 +103,8 @@ export default class User extends Component {
         )
     }
 }
+
+
+
+
+

@@ -197,3 +197,33 @@ body {
   text-align: center;
   margin: 8px;
 }
+
+/* register */
+
+button a{
+  color: white;
+}
+
+.form__retrieve-pass {
+  display: block;
+  text-align: center;
+  color: #616163 !important;
+  transition: all 0.3s;
+}
+.form__retrieve-pass:hover {
+  display: block;
+  text-align: center;
+  text-decoration: underline;
+  color: #616163 !important;
+  transition: all 0.3s;
+}
+
+button.btn.signup a {
+  color: #212529 !important; 
+}
+button.btn.signup a:hover {
+  text-decoration: underline;
+}
+button#button a:hover {
+  color: white;
+}

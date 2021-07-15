@@ -12,7 +12,7 @@
 h2,p{
   text-transform: capitalize;
 }
-.active{
+li.active{
   color: red !important;
   background: rgba(0, 0, 0, 0.15) !important;
 }
