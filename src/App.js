@@ -14,12 +14,13 @@ const App = () => {
       <Header />
       <Switch>         
         <Route exact path='/' component={Home} />
+        <Route exact path='/nimapTaskIntervew' component={Home} />
         <Route exact path='/Task' component={Task} />        
         <Route exact path='/Register' component={Register} />
         {/* <Route exact path='/Register2' component={Register2} /> */}
         <Route exact path='/User' component={User} />
         {/* <Route exact path='/User' component={User} /> */}
-        {/* <Route component={Page_404} /> */}
+        <Route component={Page_404} />
       </Switch>  
       </div>    
     </>
