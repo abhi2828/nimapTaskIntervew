@@ -5,53 +5,88 @@ export default class User extends Component {
     constructor(props){
         super(props);
         this.state={
-            link:true,
-            users:[],
+            checkLink:false,
+            registerUsers:[],
+            errors: {
+                email: '',
+                password: ''
+            },
             login:{
                 email:'',
                 password:''
             }
         }
+        console.log(this.state.registerUsers,'registerUsers');
     }
 
-    onChangeHandler=(e)=>{
+    ChangeHandler=(e)=>{
         let{ login } = this.state;
+        let name = e.target.name
+        let errors = this.state.errors
+        
         login[e.target.name] = e.target.value
         this.setState({
             login
         })
+
+        // field validation
+
+        const email_pattern = /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g;
+        const email_result = email_pattern.test(login.email);
+
+        const password_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,10}$/g;        
+        const password_result = password_pattern.test(login.password);
+
+        switch(name){
+            case 'email': 
+            errors.email =  email_result === false ? '*Please enter valid email-ID.' : ''
+            break;
+
+            case 'password': 
+            errors.password =  password_result === false ? '*Please enter valid password ( at least 8 characters in length, one upper case,one lower case,one digit,one Special character).' : ''
+            break;
+
+            case 'conf_pass': 
+            errors.conf_pass = login.password !== login.conf_pass ? '*Please Re-enter same password.' : ''
+            break;
+           
+            default :
+            break;
+        }
+        this.setState({
+            errors
+        })
     }
 
     onSubmitHandler=(e)=>{
+
         e.preventDefault()
-        let{ login,users} = this.state;    
+        let{ login,registerUsers,errors} = this.state;    
+
+        registerUsers = JSON.parse(localStorage.getItem('users'))
+
+        console.log(registerUsers,'registerUsers');
+
+        console.log(login,'login input');
+
         if(login.email && login.password !== ''){
-            // console.log('submited successfully');
 
 // *********************   test  **************************
 
-                var check ='Not found';
-                users.forEach(ele => {
-                if(ele.email===login.email)
-                {
-                    check = ele
-                }
-                })
-                if(check==='Not found'){
-                    users.push(login);
-                // console.log(`Users Add`,login);
-                // console.log(`logged users : `,users);
-                }else{
-                alert(`Already Exist `,check);
+                let {checkLink } = this.state;
+                registerUsers.find(e => e.email == login.email && e.password == login.password ? checkLink = true : checkLink = false );
 
-                }
+                console.log(checkLink);
+
+                // checkLink == true ? console.log('abhay its a valid user') : console.log('abhay its a not valid user');  // this is working here properly bt not working below at line number 145
+
 
 // ************************  test   ****************************************
 
-        //     users.push(login)
-            console.log(users,'users');
+   //     registerUsers.push(login)
+            console.log(registerUsers,'registerUsers');
             this.setState({
-                users:users,
+                registerUsers:registerUsers,
                 login:{
                     email:e.target.reset(),     // this suppose reset the input field
                     password:e.target.reset()
@@ -59,11 +94,32 @@ export default class User extends Component {
             })
         }
         else{
-            console.log('Please Enter Valid login credential');
+            if(login.email === ''){
+
+                errors.email = 'email canot be blank'
+                this.setState({
+                    errors
+                })
+            }
+            if(login.password === ''){
+
+                errors.password = 'password canot be blank'
+                this.setState({
+                    errors
+                })
+            }
+            if(login.conf_pass === ''){
+
+                errors.conf_pass = 'conf_pass canot be blank'
+                this.setState({
+                    errors
+                })
+            }
         }
     }
 
     render() {
+        let {checkLink } = this.state;
         return (
             <>
             <div id="login-card" className="card">
@@ -71,17 +127,32 @@ export default class User extends Component {
                     <h2 className="text-center">Login</h2>  
                     <br />
                     <form onSubmit={this.onSubmitHandler} noValidate>
-                        <div className="form-group">
-                            <input type="email" value={this.state.login.Email} onChange={this.onChangeHandler} className="form-control form_input" id="email" placeholder="Enter email" name="email" />
-                        </div>
-                        <div className="form-group">
-                            <input type="password" value={this.state.login.Password} onChange={this.onChangeHandler} className="form-control form_input" id="password" placeholder="Enter password" name="password" />
-                        </div>
-                        <button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit</button>
+                            <div className="form-group">
+                                <input type="text" value={this.state.login.email} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="email" placeholder="Enter email" name="email" />
+                            </div>
+                            <span className="error_color">{this.state.errors.email} </span>
+
+                            <div className="form-group">
+                                 <input type="text" value={this.state.login.password} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="password" placeholder="Enter password" name="password" />
+                            </div>
+                            <span className="error_color">{this.state.errors.password} </span>
+
+                         {/*   issue area  want to display NavLink with path if condtion satisfied else regular btn */}
+
+
+
+
+                        {checkLink == true ? console.log('abhay its a valid user') : console.log('abhay its a not valid user')}
+
+                        { checkLink === true ?<NavLink to='AfterLogin'><button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit2</button></NavLink> : <button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit</button> }
+
+                        {/* { this.state.checkLink === true ? <button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit</button> : <NavLink to='AfterLogin'><button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit2</button></NavLink> } */}
+                        
+
+
+
+                        {/*   issue area  */}
                         <br/>
-                        {/* <div className="form__row">
-                            <NavLink to='' className="form__retrieve-pass">Forgot Password?</NavLink>
-                        </div> */}
                         <div>
                             <span className="ask">Don't have account?</span>
                             <NavLink to='/Register'><button className="btn signup">sign up</button></NavLink>

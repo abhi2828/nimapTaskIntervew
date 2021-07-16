@@ -14,7 +14,7 @@ export default class Register extends Component {
                 conf_pass: ''
             },
             users:[],
-            login: {
+            register: {
                 email: '',
                 password: '',
                 conf_pass: ''
@@ -26,17 +26,19 @@ export default class Register extends Component {
     ChangeHandler = (e) => {
         let name = e.target.name
         let errors = this.state.errors
-        let { login } = this.state
-        login[e.target.name] = e.target.value
+        let { register } = this.state
+        register[e.target.name] = e.target.value
         this.setState({
-            login
+            register
         })
-        // this.fieldValidion()
+        
+        // field validation
+
         const email_pattern = /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g;
-        const email_result = email_pattern.test(login.email);
+        const email_result = email_pattern.test(register.email);
 
         const password_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,10}$/g;        
-        const password_result = password_pattern.test(login.password);
+        const password_result = password_pattern.test(register.password);
 
         switch(name){
             case 'email': 
@@ -48,7 +50,7 @@ export default class Register extends Component {
             break;
 
             case 'conf_pass': 
-            errors.conf_pass = login.password !== login.conf_pass ? '*Please Re-enter same password.' : ''
+            errors.conf_pass = register.password !== register.conf_pass ? '*Please Re-enter same password.' : ''
             break;
            
             default :
@@ -62,22 +64,22 @@ export default class Register extends Component {
         // this.fieldValidion()
         e.preventDefault()
         
-        let{ login,users,errors} = this.state;  
+        let{ register,users,errors} = this.state;  
 
-        if(login.email && login.password && login.conf_pass !== '' ){
+        if(register.email && register.password && register.conf_pass !== '' ){
             console.log('submited successfully');
-            delete login['']
-            console.log(login,'login');
+            delete register['']
+            console.log(register,'register');
            
             var check = false
             users.forEach((ele)=>{
-                if(ele.email === login.email){
+                if(ele.email === register.email){
                     check = true
                 }               
             })
             if(check ===  false){
-                users.push(login)
-                alert(`Users Add`,login);
+                users.push(register)
+                alert(`Users Add`,register);
             }
             else{
                 alert(`Already Exist `,check);
@@ -87,7 +89,7 @@ export default class Register extends Component {
 
                 this.setState({
                     users:users,
-                    login: {
+                    register: {
                         email: '',
                         password: '',
                         conf_pass: ''
@@ -97,21 +99,21 @@ export default class Register extends Component {
 
         }
         else{
-            if(login.email === ''){
+            if(register.email === ''){
 
                 errors.email = 'email canot be blank'
                 this.setState({
                     errors
                 })
             }
-            if(login.password === ''){
+            if(register.password === ''){
 
                 errors.password = 'password canot be blank'
                 this.setState({
                     errors
                 })
             }
-            if(login.conf_pass === ''){
+            if(register.conf_pass === ''){
 
                 errors.conf_pass = 'conf_pass canot be blank'
                 this.setState({
@@ -135,20 +137,27 @@ export default class Register extends Component {
                         <br />
                         <form onSubmit={this.onSubmitHandler} >
                             <div className="form-group">
-                                <input type="email" value={this.state.login.email} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="email" placeholder="Enter email" name="email" />
+                                <input type="text" value={this.state.register.email} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="email" placeholder="Enter email" name="email" />
                             </div>
                             <span className="error_color">{email} </span>
 
                             <div className="form-group">
-                                <input type="text" value={this.state.login.password} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="password" placeholder="Enter password" name="password" />
+                                <input type="text" value={this.state.register.password} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="password" placeholder="Enter password" name="password" />
                             </div>
                             <span className="error_color">{password} </span>
                             <div className="form-group">
-                                <input type="text" value={this.state.login.conf_pass} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="password2" placeholder="Re_Enter password" name="conf_pass" />
+                                <input type="text" value={this.state.register.conf_pass} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="password2" placeholder="Re_Enter password" name="conf_pass" />
                             </div>
                             <span className="error_color">{conf_pass} </span>
 
-                            {/* { this.state.login.email && this.state.login.password && this.state.login.conf_pass === '' ? console.log('link disable'):console.log(' link enable')} */}
+                            {/* { this.state.register.email && this.state.register.password && this.state.register.conf_pass === '' ? console.log('link disable'):console.log(' link enable')} */}
+
+
+
+{/* { (this.state.register.email || this.state.register.password || this.state.register.conf_pass === '') ? <button type="submit" id="button" className="btn btn-primary deep-purple btn-block "> Submit</button> :null}
+
+{ (this.state.register.email.length && this.state.register.password.length && this.state.register.conf_pass.length > 0) ? <button type="submit" id="button" className="btn btn-primary deep-purple btn-block "><NavLink exact to='/Register' > Submit</NavLink></button>:null}
+ */}
 
 
                                 {/* <button type="submit" id="button" className="btn btn-primary deep-purple btn-block "> Submit</button> */}
@@ -156,7 +165,7 @@ export default class Register extends Component {
                             <br/>
                             <div>
                                 <span className="ask">already have an account?</span>
-                                 <NavLink to='/User'>  Login</NavLink>
+                                 <NavLink to='/User'>  login</NavLink>
                             </div>
                             <br />
                             <br />
