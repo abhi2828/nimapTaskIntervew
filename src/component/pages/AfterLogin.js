@@ -41,10 +41,10 @@ export default class AfterLogin extends Component {
         this.setState({
             login_user 
         })
-        console.log(login_user,'login_user');        
+        // console.log(login_user,'login_user');        
       }     
 
-    onChangeHandler=(e)=>{
+    onChangeHandler=()=>{
         
     }
     

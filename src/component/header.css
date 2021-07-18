@@ -19,6 +19,10 @@
   width: 75%;
 }
 
+/* home */
+
+
+/* home */
 
 
 /*| Navigation |*/
@@ -131,6 +135,7 @@ span.btn.btn-header-link.d-flex.justify-content-between,
 span.btn.btn-header-link.collapsed.d-flex.justify-content-between {
   border: 1px solid;
   width: 200px !important;
+  margin: 15px 0 0 15px;
 }
 
 a.btn.btn-header-link.d-flex.justify-content-between:focus,

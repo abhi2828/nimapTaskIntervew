@@ -26,7 +26,7 @@ const Home = () => {
                 </div>
                 </div>
 
-                <b>Note : Here should be the text related to selected dropdown</b>
+                <b className="bottom_note">Note : Here should be the text related to selected dropdown</b>
         </>
     )
 }
