@@ -21,7 +21,7 @@ span.error_color {
 
 /* change password */
 
-#change_pass_button{
+#change_pass_button,#logout_button{
     border-radius: 30px;
     border-radius: 30px;
     width: auto;

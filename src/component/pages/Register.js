@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 // import validator from 'validator'
 
 export default class Register extends Component {
@@ -7,12 +7,13 @@ export default class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            link:true,
+            checkLink:false,
             errors: {
                 email: '',
                 password: '',
                 conf_pass: ''
             },
+            temp:[],
             users:[],
             register: {
                 email: '',
@@ -57,45 +58,55 @@ export default class Register extends Component {
             break;
         }
         this.setState({
-            errors
+            errors 
         })
     }
     onSubmitHandler = (e) => {
         // this.fieldValidion()
         e.preventDefault()
+        let localStorageData= JSON.parse(localStorage.getItem('users'))
+
+        console.log(localStorageData,'localStorageData');
         
-        let{ register,users,errors} = this.state;  
+        let{ register,users,errors,checkLink} = this.state;  
+
+        
 
         if(register.email && register.password && register.conf_pass !== '' ){
             console.log('submited successfully');
-            delete register['']
+            // delete register['']
             console.log(register,'register');
            
-            var check = false
-            users.forEach((ele)=>{
+            var check = 'not found'
+            users.find((ele)=>{
                 if(ele.email === register.email){
-                    check = true
+                    check = 'found'
                 }               
             })
-            if(check ===  false){
+            users.push(register)
+
+            // console.log(users,'users');
+            if( check ===  'not found' && errors.email === '' && errors.password === '' && errors.conf_pass === ''){
+
                 users.push(register)
-                alert(`Users Add`,register);
+                
+                checkLink = true
+                this.setState({
+                    checkLink 
+                    // window.location.href='/User'
+                })
+
+                // localStorageData = localStorageData.push(JSON.stringify(users))
+                localStorage.setItem('users', JSON.stringify(users));
+                // this.props.history.push('/User')
+                alert(`Users Add`);
+                // console.log(localStorageData,'localStorageData2');
             }
             else{
                 alert(`Already Exist `,check);
              }           
-
-                console.log(users,'users');
-
-                this.setState({
-                    users:users,
-                    register: {
-                        email: '',
-                        password: '',
-                        conf_pass: ''
-                    }
-                })
-                
+            //  console.log(users,check);
+            //     console.log(users,'users');           
 
         }
         else{
@@ -121,11 +132,23 @@ export default class Register extends Component {
                 })
             }
         }
-        localStorage.setItem('users', JSON.stringify(users));
-        
+
+        this.setState({
+                users:users,
+                register: {
+                    email: '',
+                    password: '',
+                    conf_pass: ''
+                }
+            })   
+  
+        console.log(users,'users');
     }
 
     render() {
+        if(this.state.checkLink === true ){
+            // return <Redirect to='/User' />
+        }
 
         const{email,password,conf_pass} = this.state.errors
         return (
@@ -150,18 +173,7 @@ export default class Register extends Component {
                             </div>
                             <span className="error_color">{conf_pass} </span>
 
-                            {/* { this.state.register.email && this.state.register.password && this.state.register.conf_pass === '' ? console.log('link disable'):console.log(' link enable')} */}
-
-
-
-{/* { (this.state.register.email || this.state.register.password || this.state.register.conf_pass === '') ? <button type="submit" id="button" className="btn btn-primary deep-purple btn-block "> Submit</button> :null}
-
-{ (this.state.register.email.length && this.state.register.password.length && this.state.register.conf_pass.length > 0) ? <button type="submit" id="button" className="btn btn-primary deep-purple btn-block "><NavLink exact to='/Register' > Submit</NavLink></button>:null}
- */}
-
-
-                                {/* <button type="submit" id="button" className="btn btn-primary deep-purple btn-block "> Submit</button> */}
-                                <button type="submit" id="button" className="btn btn-primary deep-purple btn-block "><NavLink exact to='/Register' > Submit</NavLink></button>
+                            <button type="submit" id="button" className="btn btn-primary deep-purple btn-block "> Submit</button>
                             <br/>
                             <div>
                                 <span className="ask">already have an account?</span>

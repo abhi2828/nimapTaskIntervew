@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
+
+var matchedUser
 export default class User extends Component {
     constructor(props){
         super(props);
@@ -22,8 +24,7 @@ export default class User extends Component {
     ChangeHandler=(e)=>{
         let{ login } = this.state;
         let name = e.target.name
-        let errors = this.state.errors
-        
+        let errors = this.state.errors        
         login[e.target.name] = e.target.value
         this.setState({
             login
@@ -56,6 +57,7 @@ export default class User extends Component {
         this.setState({
             errors
         })
+
     }
 
     onSubmitHandler=(e)=>{
@@ -69,29 +71,33 @@ export default class User extends Component {
 
         console.log(login,'login input');
 
+        localStorage.setItem('login', JSON.stringify(login));
+
         if(login.email && login.password !== ''){
 
 // *********************   test  **************************
 
                 let {checkLink } = this.state;
-                registerUsers.find(e => e.email == login.email && e.password == login.password ? checkLink = true : checkLink = false );
+                registerUsers.find(e => e.email == login.email && e.password == login.password ? checkLink = true : checkLink = false )
 
-                console.log(checkLink);
+                this.setState({
+                    checkLink  
+                })
 
-                // checkLink == true ? console.log('abhay its a valid user') : console.log('abhay its a not valid user');  // this is working here properly bt not working below at line number 145
+                checkLink === true ? console.log(checkLink,'abhay its a valid user') : console.log(checkLink,'abhay its a not valid user');  // this is working here properly bt not working below at line number 145
 
 
 // ************************  test   ****************************************
 
    //     registerUsers.push(login)
             console.log(registerUsers,'registerUsers');
-            this.setState({
-                registerUsers:registerUsers,
-                login:{
-                    email:e.target.reset(),     // this suppose reset the input field
-                    password:e.target.reset()
-                }
-            })
+            // this.setState({
+            //     registerUsers:registerUsers,
+            //     login:{
+            //         email:'',     // this suppose reset the input field
+            //         password:''
+            //     }
+            // })
         }
         else{
             if(login.email === ''){
@@ -119,7 +125,9 @@ export default class User extends Component {
     }
 
     render() {
-        let {checkLink } = this.state;
+       if(this.state.checkLink === true ){
+           return <Redirect to='/AfterLogin' />
+       }
         return (
             <>
             <div id="login-card" className="card">
@@ -137,21 +145,7 @@ export default class User extends Component {
                             </div>
                             <span className="error_color">{this.state.errors.password} </span>
 
-                         {/*   issue area  want to display NavLink with path if condtion satisfied else regular btn */}
-
-
-
-
-                        {checkLink == true ? console.log('abhay its a valid user') : console.log('abhay its a not valid user')}
-
-                        { checkLink === true ?<NavLink to='AfterLogin'><button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit2</button></NavLink> : <button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit</button> }
-
-                        {/* { this.state.checkLink === true ? <button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit</button> : <NavLink to='AfterLogin'><button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit2</button></NavLink> } */}
-                        
-
-
-
-                        {/*   issue area  */}
+                        <button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit2</button>
                         <br/>
                         <div>
                             <span className="ask">Don't have account?</span>
