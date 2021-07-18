@@ -226,3 +226,20 @@ button.btn.signup a:hover {
 button#button a:hover {
   color: white;
 }
+
+
+/* password eye icon css */
+
+.fa-eye:before,.fa-eye-slash:before  {
+  position: relative;
+  top: 10px;
+}
+.pass_icon {
+  display: grid;
+  grid-template-columns: auto auto;
+  border: solid 1px #ccc;
+}
+input.Afterlogin {
+  padding-left: 55px;
+  border: none;
+}

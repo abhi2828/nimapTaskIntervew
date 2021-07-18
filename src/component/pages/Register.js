@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { NavLink, Redirect } from 'react-router-dom';
 // import validator from 'validator'
 
+var check
 export default class Register extends Component {
 
     constructor(props) {
@@ -13,7 +14,6 @@ export default class Register extends Component {
                 password: '',
                 conf_pass: ''
             },
-            temp:[],
             users:[],
             register: {
                 email: '',
@@ -23,6 +23,7 @@ export default class Register extends Component {
         }
     }
 
+    
 
     ChangeHandler = (e) => {
         let name = e.target.name
@@ -62,52 +63,39 @@ export default class Register extends Component {
         })
     }
     onSubmitHandler = (e) => {
-        // this.fieldValidion()
-        e.preventDefault()
-        let localStorageData= JSON.parse(localStorage.getItem('users'))
 
-        console.log(localStorageData,'localStorageData');
-        
-        let{ register,users,errors,checkLink} = this.state;  
-
-        
+     // this.fieldValidion()
+        e.preventDefault()        
+        let{ register,users,errors,checkLink} = this.state;       
 
         if(register.email && register.password && register.conf_pass !== '' ){
             console.log('submited successfully');
-            // delete register['']
-            console.log(register,'register');
-           
-            var check = 'not found'
+            console.log(register,'register');           
+            check = 'not found'
             users.find((ele)=>{
                 if(ele.email === register.email){
                     check = 'found'
                 }               
             })
-            users.push(register)
-
-            // console.log(users,'users');
+            
             if( check ===  'not found' && errors.email === '' && errors.password === '' && errors.conf_pass === ''){
-
-                users.push(register)
-                
+                users.push(register)                
                 checkLink = true
                 this.setState({
                     checkLink 
-                    // window.location.href='/User'
                 })
-
-                // localStorageData = localStorageData.push(JSON.stringify(users))
-                localStorage.setItem('users', JSON.stringify(users));
-                // this.props.history.push('/User')
                 alert(`Users Add`);
-                // console.log(localStorageData,'localStorageData2');
+                let localStorageData= []
+                localStorageData=JSON.parse(localStorage.getItem('users')) || [];
+                localStorageData.push(register)
+                console.log(localStorageData,'localStorageData');
+                localStorage.setItem('users',JSON.stringify(localStorageData))
+                this.props.history.push('/User')
             }
             else{
-                alert(`Already Exist `,check);
+                
+                check !== 'not found' ? alert(`Already Exist `) : alert(`please enter valid data `)
              }           
-            //  console.log(users,check);
-            //     console.log(users,'users');           
-
         }
         else{
             if(register.email === ''){
@@ -141,14 +129,9 @@ export default class Register extends Component {
                     conf_pass: ''
                 }
             })   
-  
-        console.log(users,'users');
     }
 
     render() {
-        if(this.state.checkLink === true ){
-            // return <Redirect to='/User' />
-        }
 
         const{email,password,conf_pass} = this.state.errors
         return (
@@ -173,7 +156,7 @@ export default class Register extends Component {
                             </div>
                             <span className="error_color">{conf_pass} </span>
 
-                            <button type="submit" id="button" className="btn btn-primary deep-purple btn-block "> Submit</button>
+                            <button type="submit" id="button" className="btn btn-primary deep-purple btn-block "> Register</button>
                             <br/>
                             <div>
                                 <span className="ask">already have an account?</span>

@@ -18,13 +18,13 @@ export default class User extends Component {
                 password:''
             }
         }
-        console.log(this.state.registerUsers,'registerUsers');
     }
 
+    
     ChangeHandler=(e)=>{
         let{ login } = this.state;
-        let name = e.target.name
-        let errors = this.state.errors        
+        let errors = this.state.errors
+        let name = e.target.name        
         login[e.target.name] = e.target.value
         this.setState({
             login
@@ -44,7 +44,7 @@ export default class User extends Component {
             break;
 
             case 'password': 
-            errors.password =  password_result === false ? '*Please enter valid password ( at least 8 characters in length, one upper case,one lower case,one digit,one Special character).' : ''
+            errors.password =  password_result === false ? '*Please enter valid password ( at least 8 characters in length, one upper case,one lower case,one digit,atleast one of [@$!%*?&] Special character).' : ''
             break;
 
             case 'conf_pass': 
@@ -71,33 +71,14 @@ export default class User extends Component {
 
         console.log(login,'login input');
 
-        localStorage.setItem('login', JSON.stringify(login));
+       
 
         if(login.email && login.password !== ''){
-
-// *********************   test  **************************
-
                 let {checkLink } = this.state;
-                registerUsers.find(e => e.email == login.email && e.password == login.password ? checkLink = true : checkLink = false )
-
+                registerUsers.find(e => e.email === login.email && e.password === login.password ? checkLink = true : checkLink = false );
                 this.setState({
                     checkLink  
                 })
-
-                checkLink === true ? console.log(checkLink,'abhay its a valid user') : console.log(checkLink,'abhay its a not valid user');  // this is working here properly bt not working below at line number 145
-
-
-// ************************  test   ****************************************
-
-   //     registerUsers.push(login)
-            console.log(registerUsers,'registerUsers');
-            // this.setState({
-            //     registerUsers:registerUsers,
-            //     login:{
-            //         email:'',     // this suppose reset the input field
-            //         password:''
-            //     }
-            // })
         }
         else{
             if(login.email === ''){
@@ -122,6 +103,8 @@ export default class User extends Component {
                 })
             }
         }
+
+        localStorage.setItem('login', JSON.stringify(login));
     }
 
     render() {
@@ -145,7 +128,7 @@ export default class User extends Component {
                             </div>
                             <span className="error_color">{this.state.errors.password} </span>
 
-                        <button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Submit2</button>
+                        <button type="submit" id="button" className="btn btn-primary deep-purple btn-block ">Login</button>
                         <br/>
                         <div>
                             <span className="ask">Don't have account?</span>
