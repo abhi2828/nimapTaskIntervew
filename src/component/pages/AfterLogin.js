@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 
-let login_user_details= JSON.parse(localStorage.getItem('login'))
+let login_user_details
 
-console.log(login_user_details,'login_user_details');
+
 
 export default class AfterLogin extends Component {
 
@@ -17,7 +17,8 @@ export default class AfterLogin extends Component {
             }
         }
        
-                
+        login_user_details= JSON.parse(localStorage.getItem('login'))  
+        console.log(login_user_details,'login_user_details');       
     }
 
  // toggle password eye icon

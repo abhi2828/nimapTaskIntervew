@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import { NavLink, Redirect } from 'react-router-dom';
 
 
-var matchedUser
+var registerUsers
 export default class User extends Component {
     constructor(props){
         super(props);
         this.state={
             checkLink:false,
-            registerUsers:[],
             errors: {
                 email: '',
                 password: ''
@@ -18,6 +17,8 @@ export default class User extends Component {
                 password:''
             }
         }
+        registerUsers = JSON.parse(localStorage.getItem('users'))
+        console.log(registerUsers,'registerUsers');
     }
 
     
@@ -57,17 +58,17 @@ export default class User extends Component {
         this.setState({
             errors
         })
-
+        
     }
 
     onSubmitHandler=(e)=>{
 
         e.preventDefault()
-        let{ login,registerUsers,errors} = this.state;    
+        let{ login,errors} = this.state;    
 
-        registerUsers = JSON.parse(localStorage.getItem('users'))
+        // registerUsers = JSON.parse(localStorage.getItem('users'))
 
-        console.log(registerUsers,'registerUsers');
+        // console.log(registerUsers,'registerUsers');
 
         console.log(login,'login input');
 
@@ -124,7 +125,7 @@ export default class User extends Component {
                             <span className="error_color">{this.state.errors.email} </span>
 
                             <div className="form-group">
-                                 <input type="text" value={this.state.login.password} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="password" placeholder="Enter password" name="password" />
+                                 <input type="password" value={this.state.login.password} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="password" placeholder="Enter password" name="password" />
                             </div>
                             <span className="error_color">{this.state.errors.password} </span>
 

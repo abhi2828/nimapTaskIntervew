@@ -148,11 +148,11 @@ export default class Register extends Component {
                             <span className="error_color">{email} </span>
 
                             <div className="form-group">
-                                <input type="text" value={this.state.register.password} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="password" placeholder="Enter password" name="password" />
+                                <input type="password" value={this.state.register.password} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="password" placeholder="Enter password" name="password" />
                             </div>
                             <span className="error_color">{password} </span>
                             <div className="form-group">
-                                <input type="text" value={this.state.register.conf_pass} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="password2" placeholder="Re_Enter password" name="conf_pass" />
+                                <input type="password" value={this.state.register.conf_pass} onChange={this.ChangeHandler} autoComplete='off' className="form-control form_input" id="password2" placeholder="Re_Enter password" name="conf_pass" />
                             </div>
                             <span className="error_color">{conf_pass} </span>
 
