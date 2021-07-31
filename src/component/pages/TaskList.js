@@ -23,7 +23,7 @@ export default class TaskList extends Component {
     }
 
     fetchData = async () => {
-        const { data } = await axios.get("http://jsonplaceholder.typicode.com/todos")
+        const { data } = await axios.get("https://jsonplaceholder.typicode.com/todos")
         data.reverse();
         this.setState({
             task: data
