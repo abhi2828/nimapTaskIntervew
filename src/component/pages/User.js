@@ -8,6 +8,7 @@ export default class User extends Component {
         super(props);
         this.state={
             checkLink:false,
+            validUser:true,
             errors: {
                 email: '',
                 password: ''
@@ -45,7 +46,7 @@ export default class User extends Component {
             break;
 
             case 'password': 
-            errors.password =  password_result === false ? '*Please enter valid password ( at least 8 characters in length, one upper case,one lower case,one digit,atleast one of [@$!%*?&] Special character).' : ''
+            errors.password =  password_result === false ? '*Please enter valid password.' : ''
             break;
 
             case 'conf_pass': 
@@ -65,21 +66,19 @@ export default class User extends Component {
 
         e.preventDefault()
         let{ login,errors} = this.state;    
-
-        // registerUsers = JSON.parse(localStorage.getItem('users'))
-
-        // console.log(registerUsers,'registerUsers');
-
-        console.log(login,'login input');
-
-       
-
+        console.log(login,'login input');  
         if(login.email && login.password !== ''){
-                let {checkLink } = this.state;
+                let {checkLink,validUser } = this.state;
                 registerUsers.find(e => e.email === login.email && e.password === login.password ? checkLink = true : checkLink = false );
                 this.setState({
                     checkLink  
                 })
+                registerUsers.find(e => e.email === login.email && e.password === login.password ? validUser = true : validUser = false );
+                this.setState({
+                    validUser  
+                })
+                console.log('validUser',validUser);
+                // this.props.history.push('/Register')
         }
         else{
             if(login.email === ''){
@@ -112,6 +111,9 @@ export default class User extends Component {
        if(this.state.checkLink === true ){
            return <Redirect to='/AfterLogin' />
        }
+       if(this.state.validUser !== true ){
+        return <Redirect to='/Register' />
+    }
         return (
             <>
             <div id="login-card" className="card">

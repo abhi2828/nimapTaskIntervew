@@ -23,9 +23,12 @@ const App = () => {
         <Route exact path='/AfterLogin' component={AfterLogin} />
         <Route component={Page_404} />
       </Switch>  
-      </div>    
+      </div>   
+       
     </>
   )
 }
+
+
 
 export default App

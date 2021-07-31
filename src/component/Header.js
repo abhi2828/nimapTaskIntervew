@@ -14,13 +14,13 @@ const Header = () => {
               <div className="navbar-nav">
                 <ul className="ul_list">
                   <li className="item_list">
-                    <NavLink exact activeClassName='active' to='/' > Home</NavLink>
+                    <NavLink exact activeClassName='menu_item1 active' to='/' > Home</NavLink>
                   </li>
                   <li className="item_list">
-                    <NavLink exact activeClassName='active' to='/Task' > Task</NavLink>
+                    <NavLink exact activeClassName='menu_item2 active' to='/Task' > Task</NavLink>
                   </li>
                   <li className="item_list">
-                    <NavLink exact activeClassName='active' to='/User' > User</NavLink>
+                    <NavLink exact activeClassName='menu_item3 active' to='/User' > User</NavLink>
                   </li>
                 </ul>             
               </div>

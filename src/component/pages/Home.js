@@ -1,5 +1,8 @@
 import React from 'react'
-
+const menu_item1 = {
+    color: 'red !important',
+    background: 'rgba(0, 0, 0, 0.15) !important'
+  };
 const Home = () => {
     return (
         <>
